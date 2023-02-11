@@ -88,11 +88,6 @@ char	*read_newline(char *str)
 		ret[j] = str[j];
 		j++;
 	}
-	if (str[j] == '\n')
-	{
-		ret[j] = '\n';
-		j++;
-	}
 	ret[j] = '\0';
 	return (ret);
 }
