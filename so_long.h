@@ -6,6 +6,6 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "./GET_NEXT_LINE/get_next_line.h"
+# include "./get_net_line/get_next_line.h"
 
 #endif
