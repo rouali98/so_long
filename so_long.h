@@ -27,6 +27,7 @@ char	**ft_rline(char *argv);
 int		ft_cheklkher(char **str);
 int		ft_cheklwel(char **str);
 int		ft_wall(char **str);
-void	ft_mlx(char **m);
+void	ft_mlx(char **map, void *mlx, void *win);
+void	ft_move_p(void);
 
 #endif
