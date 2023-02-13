@@ -74,7 +74,7 @@ char	**ft_rline(char *argv)
 	return (m);
 }
 
-int	ft_cheklkher(char **str)
+int	ft_cheklwel(char **str)
 {
 	int	i;
 	int	j;
@@ -83,7 +83,7 @@ int	ft_cheklkher(char **str)
 	j = f_strlen(str) - 1;
 	while (str[j] != '\0')
 	{
-		if (j == (f_strlen(str) - 1))
+		if (j == 0)
 		{
 			while (str[j][i] != '\0')
 			{
@@ -99,7 +99,7 @@ int	ft_cheklkher(char **str)
 	return (0);
 }
 
-int	ft_cheklwel(char **str)
+int	ft_cheklkher(char **str)
 {
 	int	i;
 	int	j;
@@ -108,7 +108,7 @@ int	ft_cheklwel(char **str)
 	j = f_strlen(str) - 1;
 	while (str[j] != '\0')
 	{
-		if (j == 0)
+		if (j == (f_strlen(str) - 1))
 		{
 			while (str[j][i] != '\0')
 			{

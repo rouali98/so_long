@@ -14,8 +14,8 @@
 
 char	**g_st;
 int		g_key;
-void	*ml;
-void	*wi;
+void	*g_ml;
+void	*g_wi;
 
 void	ft_move_up(void)
 {
@@ -61,7 +61,7 @@ void	ft_move_p(void)
 			{
 				if (g_key == 2 || g_key == 124)
 				{
-					if (g_st[i][j + 1] != '1')
+					if (g_st[i][j + 1] != '1' && g_st[i][j + 1] != 'E' )
 					{
 						g_st[i][j] = '0';
 						g_st[i][j + 1] = 'P';
@@ -70,7 +70,7 @@ void	ft_move_p(void)
 				}
 				if (g_key == 0 || g_key == 123)
 				{
-					if (g_st[i][j - 1] != '1')
+					if (g_st[i][j - 1] != '1' && g_st[i][j - 1] != 'E')
 					{
 						g_st[i][j] = '0';
 						g_st[i][j - 1] = 'P';
@@ -79,7 +79,7 @@ void	ft_move_p(void)
 				}
 				if (g_key == 13 || g_key == 126)
 				{
-					if (g_st[i - 1][j] != '1')
+					if (g_st[i - 1][j] != '1' && g_st[i -1][j] != 'E')
 					{
 						g_st[i][j] = '0';
 						g_st[i - 1][j] = 'P';
@@ -88,7 +88,7 @@ void	ft_move_p(void)
 				}
 				if (g_key == 1 || g_key == 125)
 				{
-					if (g_st[i + 1][j] != '1')
+					if (g_st[i + 1][j] != '1' && g_st[i + 1][j] != 'E')
 					{
 						g_st[i][j] = '0';
 						g_st[i + 1][j] = 'P';
@@ -107,9 +107,137 @@ int	key_hook(int keycode)
 	g_key = keycode;
 	printf("press to : %d\n", keycode);
 	ft_move_p();
-	ft_mlx(g_st, ml, wi);
+	ft_mlx(g_st, g_ml, g_wi);
 	return (0);
 }
+
+int	ft_count(char **str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i][j] != '\0')
+		{
+			j++;
+		}
+		i++;
+	}
+	return (i);
+}
+
+//	//###################################//
+//int	ft_coin(char **str)
+//{
+//	int	i;
+//	int	j;
+//	int	st;
+
+//	i = 0;
+//	j = 0;
+//	while (str[i])
+//	{
+//		while (str[i][j])
+//		{
+//			if (str[i][j] == 'C')
+//			{
+//				printf("kayna");
+//				return (0);
+//			}
+//			j++;
+//		}
+//		i++;
+//	}
+//	return (0);
+//}
+//	//###################################//
+
+//int	ft_path(char **str)
+//{
+//	int	i;
+//	int	j;
+//	int	c;
+//	int	e;
+//	char *ss;
+
+//	i = 0;
+//	j = 0;
+//	while (str[i] != '\0')
+//	{
+//		while (str[i][j] == 'P')
+//		{
+//			if (str[i][j + 1] == '0')
+//			{
+//				str[i][j] = 'P';
+//				str[i][j + 1] = '1';
+//				j++;
+//			}
+//			if (str[i][j] == 'C')
+//			{
+//				str[i][j] = 'C';
+//				str[i][j + 1] = '1';
+//				c++;
+//				return (c);
+//			}
+//			if (str[i][j] == 'E')
+//			{
+//				str[i][j] = 'E';
+//				str[i][j + 1] = '1';
+//				e++;
+//				return (e);
+//			}
+//			if (str[i][j] == '1')
+//			{
+//				break ;
+//			}
+//		}
+//		i++;
+//	}
+//	return (44);
+//}
+
+//void ft_co(char **str)
+//{
+//	int	i;
+//	int j;
+//	char *e;
+//	char *c;
+
+//	i = 0;
+//	j = 0;
+//	while (str[i])
+//	{
+//		while (str[i][j])
+//		{
+//			if (str[i][j] == '1')
+//				i++;
+//			if (str[i][j] == '0')
+//			{
+//				str[i][j] = 1;
+//				i++;
+//			}
+//			if (str[i][j] == 'E')
+//			{
+//				e[i] = str[i][j];
+//				str[i][j] = 1;
+//				i++;
+//			}
+//			if (str[i][j] == 'C')
+//			{
+//				c[i] = str[i][j];
+//				str[i][j] = 1;
+//				i++;
+//			}
+//			j++;
+//		}
+//		i++;
+//	}
+//	printf("%s", e);
+//	printf("%s", c);
+//}
 
 int	main(int argc, char **argv)
 {
@@ -133,9 +261,10 @@ int	main(int argc, char **argv)
 		printf("error in map");
 		return (0);
 	}
-	ml = mlx;
-	wi = win;
+	g_ml = mlx;
+	g_wi = win;
+	//ft_co(str);
 	mlx_key_hook(win, key_hook, ft_move_p);
-	ft_mlx(g_st, ml, wi);
+	ft_mlx(g_st, g_ml, g_wi);
 	return (0);
 }

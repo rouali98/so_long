@@ -23,24 +23,20 @@ int ft_wall(char **str)
 	while (str[j] != '\0')
 	{
 		i = 0;
+		if (j >= 0 && r != ft_strlen(str[j]))
+			return (1);
 		if (j >= 1)
 		{
 			while (str[j][i] != '\0')
 			{
 				if (str[j][0] != '1' || str[j][r - 1] != '1')
-				{
 					return (1);
-				}
 				i++;
 			}
 		}
 		j--;
 	}
 	return (0);
-}
-
-void nadafak(char **/*s*/) {
-
 }
 
 void ft_mlx(char **map, void *mlx, void *win)
@@ -72,7 +68,10 @@ void ft_mlx(char **map, void *mlx, void *win)
 				mlx_put_image_to_window(mlx, win, mlx_xpm_file_to_image(mlx, "img/c.xpm", &w, &h), i * 50, a * 50);
 			}
 			if (map[a][i] == 'E')
+			{
 				mlx_put_image_to_window(mlx, win, mlx_xpm_file_to_image(mlx, "img/0.xpm", &w, &h), i * 50, a * 50);
+				mlx_put_image_to_window(mlx, win, mlx_xpm_file_to_image(mlx, "img/E_open.xpm", &w, &h), i * 50, a * 50);
+			}
 			i++;
 		}
 		a++;
