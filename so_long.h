@@ -22,12 +22,13 @@
 # include <mlx.h>
 
 int		f_strlen(char **str);
-int		ft_nline(char *argv);
+int		count_line(char *argv);
 char	**ft_rline(char *argv);
-int		ft_cheklkher(char **str);
-int		ft_cheklwel(char **str);
-int		ft_wall(char **str);
-void	ft_mlx(char **map, void *mlx, void *win);
-void	ft_move_p(void);
+int		line_down(char **str);
+int		line_up(char **str);
+int		center_wall(char **str);
+void	put_img(char **map, void *mlx, void *win);
+void	move_p(void);
+void	ft_image(char **map, void *mlx, void *win);
 
 #endif

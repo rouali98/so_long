@@ -11,25 +11,26 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-int ft_wall(char **str)
+//############# Check Center Line ######################//
+int	center_wall(char **map)
 {
-	int i;
-	int j;
-	int r;
+	int	i;
+	int	j;
+	int	ii;
 
 	i = 0;
-	j = f_strlen(str) - 1;
-	r = ft_strlen(str[i]);
-	while (str[j] != '\0')
+	j = f_strlen(map) - 1;
+	ii = ft_strlen(map[i]);
+	while (map[j] != '\0')
 	{
 		i = 0;
-		if (j >= 0 && r != ft_strlen(str[j]))
+		if (j >= 0 && ii != ft_strlen(map[j]))
 			return (1);
 		if (j >= 1)
 		{
-			while (str[j][i] != '\0')
+			while (map[j][i] != '\0')
 			{
-				if (str[j][0] != '1' || str[j][r - 1] != '1')
+				if (map[j][0] != '1' || map[j][ii - 1] != '1')
 					return (1);
 				i++;
 			}
@@ -39,12 +40,37 @@ int ft_wall(char **str)
 	return (0);
 }
 
-void ft_mlx(char **map, void *mlx, void *win)
+////############# check coin ######################//
+//int	ft_coin(char **map)
+//{
+//	int	i;
+//	int	j;
+//	int	st;
+
+//	i = 0;
+//	j = 0;
+//	while (map[i])
+//	{
+//		while (map[i][j])
+//		{
+//			if (map[i][j] == 'C')
+//			{
+//				st = map[j];
+//			}
+//			j++;
+//		}
+//		i++;
+//	}
+//	return (st);
+//}
+
+//############# Put Images ######################//
+void	put_img(char **map, void *mlx, void *win)
 {
-	int a;
-	int i;
-	int w;
-	int h;
+	int	a;
+	int	i;
+	int	w;
+	int	h;
 
 	a = 0;
 	i = 0;

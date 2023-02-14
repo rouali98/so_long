@@ -6,7 +6,7 @@ int		g_key;
 void	*ml;
 void	*wi;
 
-void	ft_move_p(void)
+void	move_p(void)
 {
 	int	i;
 	int	j;

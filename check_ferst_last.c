@@ -11,19 +11,21 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-int	f_strlen(char **str)
+//############# Count Line ######################//
+int	f_strlen(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (map[i] != '\0')
 	{
 		i++;
 	}
 	return (i);
 }
 
-int	ft_nline(char *argv)
+//############# Count Line in file ######################//
+int	count_line(char *argv)
 {
 	char	*str;
 	int		fd;
@@ -47,6 +49,7 @@ int	ft_nline(char *argv)
 	return (i);
 }
 
+//############# Return Line ######################//
 char	**ft_rline(char *argv)
 {
 	char	**m;
@@ -54,7 +57,7 @@ char	**ft_rline(char *argv)
 	int		fd;
 	int		i;
 
-	m = malloc(sizeof(char *) * (ft_nline(argv) + 1));
+	m = malloc(sizeof(char *) * (count_line(argv) + 1));
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 	{
@@ -74,20 +77,21 @@ char	**ft_rline(char *argv)
 	return (m);
 }
 
-int	ft_cheklwel(char **str)
+//############# Check Line Up ######################//
+int	line_up(char **map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = f_strlen(str) - 1;
-	while (str[j] != '\0')
+	j = f_strlen(map) - 1;
+	while (map[j] != '\0')
 	{
 		if (j == 0)
 		{
-			while (str[j][i] != '\0')
+			while (map[j][i] != '\0')
 			{
-				if (str[j][i] != '1')
+				if (map[j][i] != '1')
 				{
 					return (1);
 				}
@@ -99,20 +103,21 @@ int	ft_cheklwel(char **str)
 	return (0);
 }
 
-int	ft_cheklkher(char **str)
+//############# Check Line Down ######################//
+int	line_down(char **map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = f_strlen(str) - 1;
-	while (str[j] != '\0')
+	j = f_strlen(map) - 1;
+	while (map[j] != '\0')
 	{
-		if (j == (f_strlen(str) - 1))
+		if (j == (f_strlen(map) - 1))
 		{
-			while (str[j][i] != '\0')
+			while (map[j][i] != '\0')
 			{
-				if (str[j][i] != '1')
+				if (map[j][i] != '1')
 				{
 					return (1);
 				}
