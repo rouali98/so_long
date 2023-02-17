@@ -220,11 +220,9 @@ int	check_p(char **map)
 	return (c);
 }
 
-
 // ############# Check map error ######################//
 int	check_mapi(void)
 {
-
 	di.y = 0;
 	while (ft_path(r_mlx.map)[di.y])
 	{
@@ -312,15 +310,9 @@ int	count_c(char **map)
 	return (c);
 }
 
-// ############### main ###############//
-int	main(int argc, char **argv)
+// ############ Check C & P & E ############//
+void	check_cpe(void)
 {
-	if (argc != 2)
-	{
-		printf("Error");
-		return (0);
-	}
-	r_mlx.map = ft_rline(argv[1]);
 	if (check_p(r_mlx.map) != 1)
 	{
 		printf("Error Player");
@@ -335,6 +327,18 @@ int	main(int argc, char **argv)
 		printf("Error Door");
 		exit(1);
 	}
+}
+
+// ############### main ###############//
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		printf("Error");
+		return (0);
+	}
+	r_mlx.map = ft_rline(argv[1]);
+	check_cpe();
 	wind.w = ft_count(r_mlx.map) * 50;
 	wind.h = f_strlen(r_mlx.map) * 50;
 	r_mlx.mlx = mlx_init();
@@ -342,12 +346,10 @@ int	main(int argc, char **argv)
 	if (line_up(r_mlx.map) == 1 || \
 	line_down(r_mlx.map) == 1 || center_wall(r_mlx.map) == 1)
 	{
-		printf("error in map");
+		printf("Error Map");
 		return (0);
 	}
 	check_mapi();
-	printf("door %d\n", check_e(r_mlx.map));
-	printf("player %d\n", check_p(r_mlx.map));
 	sc();
 	r_mlx.map = ft_rline(argv[1]);
 	mlx_key_hook(r_mlx.win, key_hook, move_p);
