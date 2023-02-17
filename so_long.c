@@ -12,206 +12,340 @@
 #include "so_long.h"
 #include "mlx.h"
 
-//############### Mlx ###############//
+// ############### Mlx ###############//
 struct s_mlx
 {
-	char	**st;
-	int		key;
-	void	*ml;
-	void	*wi;
-
 	char	**map;
 	void	*mlx;
 	void	*win;
-}r_mlx;
+	int		key;
 
-//############### Display Windows ###############//
+} r_mlx;
+
+// ############### Display Windows ###############//
 struct s_display_win
 {
-	int		w;
-	int		h;
-}wind;
+	int	w;
+	int	h;
 
-//############### Move Up ###############//
-void	ft_move_up(void)
+} wind;
+// ############### Direction X & Y ###############//
+struct s_direction
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	j = 0;
-	while (r_mlx.st[i] != '\0')
-	{
-		j = 0;
-		while (r_mlx.st[i][j])
-		{
-			if (r_mlx.st[i][j] == 'P')
-			{
-				if (r_mlx.key == 13 || r_mlx.key == 126)
-				{
-					if (r_mlx.st[i - 1][j] != '1')
-					{
-						r_mlx.st[i][j] = '0';
-						r_mlx.st[i - 1][j] = 'P';
-						break ;
-					}
-				}
-			}
-		}
-	}
-}
+} di;
 
-//############### Move Colectebels ###############//
+// ############### Move Colectebels ###############//
 void	move_p(void)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	j = 0;
-	while (r_mlx.st[i] != '\0')
+	y = 0;
+	x = 0;
+	while (r_mlx.map[y] != '\0')
 	{
-		j = 0;
-		while (r_mlx.st[i][j])
+		x = 0;
+		while (r_mlx.map[y][x])
 		{
-			if (r_mlx.st[i][j] == 'P')
+			if (r_mlx.map[y][x] == 'P')
 			{
 				if (r_mlx.key == 2 || r_mlx.key == 124)
 				{
-					if (r_mlx.st[i][j + 1] != '1' && r_mlx.st[i][j + 1] != 'E' )
+					if (r_mlx.map[y][x + 1] == 'C' || r_mlx.map[y][x + 1] == '0')
 					{
-						r_mlx.st[i][j] = '0';
-						r_mlx.st[i][j + 1] = 'P';
+						r_mlx.map[y][x] = '0';
+						r_mlx.map[y][x + 1] = 'P';
 						break ;
+					}
+					if (r_mlx.map[y][x + 1] == 'E' && count_c(r_mlx.map) == 0)
+					{
+						exit(1);
 					}
 				}
 				if (r_mlx.key == 0 || r_mlx.key == 123)
 				{
-					if (r_mlx.st[i][j - 1] != '1' && r_mlx.st[i][j - 1] != 'E')
+					if (r_mlx.map[y][x - 1] == 'C' || r_mlx.map[y][x - 1] == '0')
 					{
-						r_mlx.st[i][j] = '0';
-						r_mlx.st[i][j - 1] = 'P';
+						r_mlx.map[y][x] = '0';
+						r_mlx.map[y][x - 1] = 'P';
 						break ;
+					}
+					if (r_mlx.map[y][x - 1] == 'E' && count_c(r_mlx.map) == 0)
+					{
+						exit(1);
 					}
 				}
 				if (r_mlx.key == 13 || r_mlx.key == 126)
 				{
-					if (r_mlx.st[i - 1][j] != '1' && r_mlx.st[i -1][j] != 'E')
+					if (r_mlx.map[y - 1][x] == 'C' || r_mlx.map[y - 1][x] == '0')
 					{
-						r_mlx.st[i][j] = '0';
-						r_mlx.st[i - 1][j] = 'P';
+						r_mlx.map[y][x] = '0';
+						r_mlx.map[y - 1][x] = 'P';
 						break ;
 					}
+					if (r_mlx.map[y - 1][x] == 'E' && count_c(r_mlx.map) == 0)
+						exit(1);
 				}
 				if (r_mlx.key == 1 || r_mlx.key == 125)
 				{
-					if (r_mlx.st[i + 1][j] != '1' && r_mlx.st[i + 1][j] != 'E')
+					if (r_mlx.map[y + 1][x] == 'C' || r_mlx.map[y + 1][x] == '0')
 					{
-						r_mlx.st[i][j] = '0';
-						r_mlx.st[i + 1][j] = 'P';
+						r_mlx.map[y][x] = '0';
+						r_mlx.map[y + 1][x] = 'P';
 					}
+					if (r_mlx.map[y + 1][x] == 'E' && count_c(r_mlx.map) == 0)
+						exit(1);
 					return ;
 				}
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
-//############### Key_hook ###############//
-int	key_hook(int keycode)
+// ############### Key_hook ###############//
+int key_hook(int keycode)
 {
 	r_mlx.key = keycode;
 	printf("press to : %d\n", keycode);
 	move_p();
-	put_img(r_mlx.st, r_mlx.ml, r_mlx.wi);
+	put_img(r_mlx.map, r_mlx.mlx, r_mlx.win);
 	return (0);
 }
 
-//############### Count Char ###############//
-int	ft_count(char **str)
+// ############### Count Char ###############//
+int ft_count(char **str)
 {
-	int	i;
-	int	j;
+	int x;
 
-	i = 0;
-	j = 0;
-	while (str[0][j] != '\0')
+	x = 0;
+	while (str[0][x] != '\0')
 	{
-		j++;
+		x++;
 	}
-	return (j);
+	return (x);
 }
 
-//############# Check Path ######################//
+// ############# Check Path S01 ######################//
 char	**ft_path(char **map)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (map[i] != '\0')
+	y = 0;
+	while (map[y])
 	{
-		j = 0;
-		while (map[i][j] != '\0')
+		x = 0;
+		while (map[y][x])
 		{
-			if (map[i][j] == 'P')
+			if (ft_valid() == 1)
 			{
-				if (map[i][j + 1] == '0' || map[i][j + 1] == 'C')
-					map[i][j + 1] = 'P';
-				if (map[i][j - 1] == '0' || map[i][j - 1] == 'C')
-					map[i][j - 1] = 'P';
-				if (map[i + 1][j] == '0' || map[i + 1][j] == 'C')
-					map[i + 1][j] = 'P';
-				if (map[i - 1][j] == '0' || map[i - 1][j] == 'C')
-					map[i - 1][j] = 'P';
+				exit(1);
 			}
-			j++;
+			if (check_e(map) != 1 && check_p(map) != 1)
+			{
+				printf("Error Door");
+				exit(1);
+			}
+			if (map[y][x] == 'P')
+			{
+				if (r_mlx.map[y][x + 1] == '1' && r_mlx.map[y][x - 1] == '1' && r_mlx.map[y - 1][x] == '1' && r_mlx.map[y + 1][x] == '1')
+					exit(1);
+				while (map[y + 1][x] == '0' || map[y + 1][x] == 'C')
+				{
+					map[y + 1][x] = 'P';
+					y++;
+				}
+				while (map[y][x + 1] == '0' || map[y][x + 1] == 'C')
+				{
+					map[y][x + 1] = 'P';
+					x++;
+				}
+				while (map[y - 1][x] == '0' || map[y - 1][x] == 'C')
+				{
+					map[y - 1][x] = 'P';
+					y--;
+				}
+				while (map[y][x - 1] == '0' || map[y][x - 1] == 'C')
+				{
+					map[y][x - 1] = 'P';
+					x--;
+				}
+			}
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (map);
 }
 
-//############### Count Char ###############//
-void	sc(char **map)
+// ############# Check E ######################//
+int	check_e(char **map)
 {
-	int	i;
+	int	c;
 
-	i = 0;
-	while (map[i])
+	di.y = 0;
+	c = 0;
+	while (map[di.y] != '\0')
 	{
-		printf("%s\n", map[i]);
-		i++;
+		di.x = 0;
+		while (map[di.y][di.x] != '\0')
+		{
+			if (map[di.y][di.x] == 'E')
+			{
+				c += 1;
+			}
+			di.x++;
+		}
+		di.y++;
 	}
+	return (c);
 }
 
-//############### Count Char ###############//
+// ############# Check P ######################//
+int	check_p(char **map)
+{
+	int	c;
+
+	di.y = 0;
+	c = 0;
+	while (map[di.y] != '\0')
+	{
+		di.x = 0;
+		while (map[di.y][di.x] != '\0')
+		{
+			if (map[di.y][di.x] == 'P')
+			{
+				c += 1;
+			}
+			di.x++;
+		}
+		di.y++;
+	}
+	return (c);
+}
+
+// ############### Count C ###############//
+int	count_c(char **map)
+{
+	int	y;
+	int	x;
+	int	c;
+
+	y = 0;
+	c = 0;
+	while (map[y] != '\0')
+	{
+		x = 0;
+		while (map[y][x] != '\0')
+		{
+			if (map[y][x] == 'C')
+			{
+				c += 1;
+			}
+			x++;
+		}
+		y++;
+	}
+	return (c);
+}
+
+// ############# Check map error ######################//
+int	check_mapi(void)
+{
+	char	**map;
+
+	map = ft_path(r_mlx.map);
+	di.y = 0;
+	while (map[di.y])
+	{
+		di.x = 0;
+		while (map[di.y][di.x])
+		{
+			if (map[di.y][di.x] == '0')
+			{
+				if (map[di.y + 1][di.x] == 'E' || map[di.y + 1][di.x] == 'C')
+					exit(1);
+				else if (map[di.y][di.x + 1] == 'E' || map[di.y][di.x + 1] == 'C')
+					exit(1);
+				else if (map[di.y - 1][di.x] == 'E' || map[di.y - 1][di.x] == 'C')
+					exit(1);
+				else if (map[di.y][di.x - 1] == 'E' || map[di.y][di.x - 1] == 'C')
+					exit(1);
+			}
+			di.x++;
+		}
+		di.y++;
+	}
+	return (0);
+}
+
+/* ########### Check P & E & C Is Valid########### */
+int	ft_valid(void)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (r_mlx.map[y])
+	{
+		x = 0;
+		while (r_mlx.map[y][x])
+		{
+			if (r_mlx.map[y][x] == 'P' || \
+			r_mlx.map[y][x] == 'E' || r_mlx.map[y][x] == 'C')
+			{
+				if ((r_mlx.map[y][x + 1] == '1' && r_mlx.map[y][x - 1] == '1') \
+				&& (r_mlx.map[y + 1][x] == '1' && r_mlx.map[y - 1][x] == '1'))
+				{
+					return (1);
+				}
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+// ############### Count Char ###############//
+void	sc(void)
+{
+	int	c;
+
+	c = 0;
+	while (ft_path(r_mlx.map)[c])
+		c++;
+}
+
+// ############### Count Char ###############//
 int	main(int argc, char **argv)
 {
-	r_mlx.map = ft_rline(argv[1]);
-	wind.h = f_strlen(r_mlx.map);
-	wind.w = ft_count(r_mlx.map);
-	r_mlx.mlx = mlx_init();
-	r_mlx.win = mlx_new_window(r_mlx.mlx, wind.w * \
-	50, wind.h * 50, "Hello world!");
 	if (argc != 2)
 	{
 		printf("Error");
 		return (0);
 	}
-	r_mlx.st = r_mlx.map;
+	r_mlx.map = ft_rline(argv[1]);
+	wind.w = ft_count(r_mlx.map) * 50;
+	wind.h = f_strlen(r_mlx.map) * 50;
+	r_mlx.mlx = mlx_init();
+	r_mlx.win = mlx_new_window(r_mlx.mlx, wind.w, wind.h, "Hello world!");
 	if (line_up(r_mlx.map) == 1 || \
 	line_down(r_mlx.map) == 1 || center_wall(r_mlx.map) == 1)
 	{
 		printf("error in map");
 		return (0);
 	}
-	r_mlx.ml = r_mlx.mlx;
-	r_mlx.wi = r_mlx.win;
-	sc(ft_path(r_mlx.map));
+	printf("door :%d\n", check_e(r_mlx.map));
+	printf("player :%d\n", check_p(r_mlx.map));
+	sc();
+	r_mlx.map = ft_rline(argv[1]);
 	mlx_key_hook(r_mlx.win, key_hook, move_p);
-	put_img(r_mlx.st, r_mlx.ml, r_mlx.wi);
+	put_img(r_mlx.map, r_mlx.mlx, r_mlx.win);
 	return (0);
 }

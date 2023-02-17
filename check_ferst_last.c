@@ -14,22 +14,22 @@
 //############# Count Line ######################//
 int	f_strlen(char **map)
 {
-	int	i;
+	int	y;
 
-	i = 0;
-	while (map[i] != '\0')
+	y = 0;
+	while (map[y] != '\0')
 	{
-		i++;
+		y++;
 	}
-	return (i);
+	return (y);
 }
 
 //############# Count Line in file ######################//
 int	count_line(char *argv)
 {
-	char	*str;
+	char	*map;
 	int		fd;
-	int		i;
+	int		y;
 
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
@@ -37,25 +37,25 @@ int	count_line(char *argv)
 		printf("Error");
 		return (0);
 	}
-	i = 0;
+	y = 0;
 	while (1)
 	{
-		str = get_next_line(fd);
-		if (str == NULL)
+		map = get_next_line(fd);
+		if (map == NULL)
 			break ;
-		i++;
+		y++;
 	}
 	close(fd);
-	return (i);
+	return (y);
 }
 
 //############# Return Line ######################//
 char	**ft_rline(char *argv)
 {
 	char	**m;
-	char	*str;
+	char	*map;
 	int		fd;
-	int		i;
+	int		y;
 
 	m = malloc(sizeof(char *) * (count_line(argv) + 1));
 	fd = open(argv, O_RDONLY);
@@ -64,41 +64,41 @@ char	**ft_rline(char *argv)
 		printf("Error");
 		return (0);
 	}
-	i = 0;
+	y = 0;
 	while (1)
 	{
-		str = get_next_line(fd);
-		if (str == NULL)
+		map = get_next_line(fd);
+		if (map == NULL)
 			break ;
-		m[i] = str;
-		i++;
+		m[y] = map;
+		y++;
 	}
-	m[i] = 0;
+	m[y] = 0;
 	return (m);
 }
 
 //############# Check Line Up ######################//
 int	line_up(char **map)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	j = f_strlen(map) - 1;
-	while (map[j] != '\0')
+	y = f_strlen(map) - 1;
+	x = 0;
+	while (map[y] != '\0')
 	{
-		if (j == 0)
+		if (y == 0)
 		{
-			while (map[j][i] != '\0')
+			while (map[y][x] != '\0')
 			{
-				if (map[j][i] != '1')
+				if (map[y][x] != '1')
 				{
 					return (1);
 				}
-				i++;
+				x++;
 			}
 		}
-		j--;
+		y--;
 	}
 	return (0);
 }
@@ -106,25 +106,25 @@ int	line_up(char **map)
 //############# Check Line Down ######################//
 int	line_down(char **map)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	j = f_strlen(map) - 1;
-	while (map[j] != '\0')
+	y = f_strlen(map) - 1;
+	x = 0;
+	while (map[y] != '\0')
 	{
-		if (j == (f_strlen(map) - 1))
+		if (y == (f_strlen(map) - 1))
 		{
-			while (map[j][i] != '\0')
+			while (map[y][x] != '\0')
 			{
-				if (map[j][i] != '1')
+				if (map[y][x] != '1')
 				{
 					return (1);
 				}
-				i++;
+				x++;
 			}
 		}
-		j--;
+		y--;
 	}
 	return (0);
 }

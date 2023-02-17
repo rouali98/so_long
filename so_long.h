@@ -30,5 +30,9 @@ int		center_wall(char **str);
 void	put_img(char **map, void *mlx, void *win);
 void	move_p(void);
 void	ft_image(char **map, void *mlx, void *win);
+int		count_c(char **map);
+int		ft_valid(void);
+int		check_e(char **map);
+int		check_p(char **map);
 
 #endif
