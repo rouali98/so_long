@@ -52,18 +52,3 @@ char	*get_next_line(int fd)
 	str = read_restline(str);
 	return (newline);
 }
-
-//int main()
-//{
-//	int fd = open("text.txt", O_RDONLY);
-//	char *str;
-
-//	while (1)
-//	{
-//		str = get_next_line(fd);
-//		printf("%s", str);
-//		if(str == NULL)
-//			break;
-//	}
-//	return (0);
-//}
