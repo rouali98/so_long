@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:15 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/18 21:38:36 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/18 21:43:02 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,18 @@ char	**ft_path(char **map)
 	return (map);
 }
 
-int ft_testksh(int i, int b, char **s) {
-	if (s[i][b]== 'E' || s[i][b] == 'C') {
-		if (ft_path(mx.map)[i + 1][b] == 'P' || ft_path(mx.map)[i - 1][b] == 'P' || ft_path(mx.map)[i][b + 1] == 'P' || ft_path(mx.map)[i][b - 1] == 'P') {
-			return 0;
+int	ft_testksh(int i, int b, char **s)
+{
+	if (s[i][b] == 'E' || s[i][b] == 'C')
+	{
+		if (ft_path(mx.map)[i + 1][b] == 'P' || \
+		ft_path(mx.map)[i - 1][b] == 'P' || ft_path(mx.map)[i][b + 1] \
+		== 'P' || ft_path(mx.map)[i][b - 1] == 'P')
+		{
+			return (0);
 		}
 	}
-	return 1;
+	return (1);
 }
 
 /* ############# Check map error ###################### */
