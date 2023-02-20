@@ -6,9 +6,10 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:38:38 by rouali            #+#    #+#             */
-/*   Updated: 2022/11/04 17:39:10 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:53:01 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 

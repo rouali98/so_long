@@ -6,12 +6,11 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:15 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/18 21:43:02 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/20 20:47:19 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx.h"
 
 /* ############### Key_hook ############### */
 int	key_hook(int keycode)
@@ -78,6 +77,27 @@ void	sc(void)
 //	}
 //}
 
+//int	ft_arg(char *argv)
+//{
+//	char *ber = ".ber";
+//	char *s;
+//	int i;
+//	i = 0;
+//	while(argv != '\0')
+//	{
+//		if (argv[i] == ".")
+//		{
+//			s = argv[i];
+//			i++;
+//		}
+//		i++;
+//	}
+//	if(ber == s)
+//		return (1);
+//	else
+//		return (0);
+//}
+
 /* ############### main ############### */
 int	main(int argc, char **argv)
 {
@@ -86,6 +106,8 @@ int	main(int argc, char **argv)
 		ft_putstr("Error");
 		return (0);
 	}
+	//if (ft_arg(argv[1]) == 1)
+	//	exit(1);
 	mx.map = ft_rline(argv[1]);
 	count_cpe();
 	ds.w = ft_count(mx.map) * 50;
@@ -96,10 +118,15 @@ int	main(int argc, char **argv)
 	check_c();
 	check_e();
 	sc();
-	//mo_p();
+	if (ft_arg(argv[1]) == 1)
+	{
+		exit(1);
+	}
+
 	mx.map = ft_rline(argv[1]);
 	mlx_key_hook(mx.win, key_hook, move_p);
 	mlx_hook(mx.win, 17, 0, ft_close, move_p);
+	mlx_mouse_hook(mx.win, key_hook, NULL);
 	put_img(mx.map, mx.mlx, mx.win);
 	mlx_loop(mx.mlx);
 	return (0);

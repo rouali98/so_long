@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:25 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/18 21:29:10 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/20 19:40:15 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "./get_net_line/get_next_line.h"
-# include <mlx.h>
+# include "./get_next_line/get_next_line.h"
+# include "mlx.h"
 
 /* ############### Mlx ############### */
 struct s_mlx
@@ -44,6 +44,7 @@ struct s_direction
 {
 	int	x;
 	int	y;
+	int c;
 
 } di;
 
@@ -60,37 +61,54 @@ struct s_image
 
 } img;
 
-int		f_strlen(char **str);
-int		count_line(char *argv);
-char	**ft_rline(char *argv);
-int		line_down(char **str);
-int		line_up(char **str);
-int		center_wall(char **str);
-void	put_img(char **map, void *mlx, void *win);
-void	move_p(void);
-void	ft_image(char **map, void *mlx, void *win);
-int		count_c(char **map);
+/* check_cpe.c */
+int		ft_close(void);
 int		ft_valid(void);
-int		count_e(char **map);
-int		count_p(char **map);
 void	count_cpe(void);
-int		ft_count(char **str);
 void	check_c(void);
 void	check_e(void);
-char	**ft_path(char **map);
+
+/* check_img.c */
+void	puteo(char **map, void *mlx, void *win);
+void	put_c(void *mlx, void *win);
+void	put_p(void *mlx, void *win);
+void	put_1(void *mlx, void *win);
+void	put_0(void *mlx, void *win);
+
+/* check_lines.c */
+int		center_wall(char **str);
+char	**ft_rline(char *argv);
 void	check_lines(void);
-void	move_p(void);
-void	ft_putstr(char *str);
-int		ft_close(void);
+int		line_up(char **str);
+int		line_down(char **str);
+
+/* count.c */
+int		ft_count(char **str);
+int		count_line(char *argv);
+int		count_c(char **map);
+int		count_e(char **map);
+int		count_p(char **map);
+
+/* exit.c */
 void	ft_exitud(void);
 void	ft_exitlr(void);
 
-/* image */
+/* move.c */
+void	m_right(void);
+void	m_left(void);
+void	m_up(void);
+void	m_down(void);
+void	move_p(void);
 
-void	puteo(char **map, void *mlx, void *win);
-void	put_c(char **map, void *mlx, void *win);
-void	put_p(char **map, void *mlx, void *win);
-void	put_1(char **map, void *mlx, void *win);
-void	put_0(char **map, void *mlx, void *win);
+/* put_img.c */
+void	var(void *mlx);
+void	put_img(char **map, void *mlx, void *win);
+
+/* so_long_utils.c */
+int		f_strlen(char **str);
+void	ft_putstr(char *str);
+
+/* so_long.c */
+char	**ft_path(char **map);
 
 #endif

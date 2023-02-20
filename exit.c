@@ -6,12 +6,11 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:59:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/18 17:02:00 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:19:44 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx.h"
 
 /* ########### Exit Up && Down ############# */
 void	ft_exitud(void)
