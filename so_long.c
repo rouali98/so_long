@@ -27,7 +27,7 @@ int	key_hook(int keycode)
 	return (0);
 }
 
-/* ############# Check Path S01 ###################### */
+/* ############# Check Path ###################### */
 char	**ft_path(char **map)
 {
 	int	y;
@@ -57,32 +57,6 @@ char	**ft_path(char **map)
 	return (map);
 }
 
-/* ############# Check map error ###################### */
-void	check_mapi(void)
-{
-	di.y = 0;
-	while (ft_path(mx.map)[di.y])
-	{
-		di.x = 0;
-		while (ft_path(mx.map)[di.y][di.x])
-		{
-			if (ft_path(mx.map)[di.y][di.x] == '0')
-			{
-				if ((ft_path(mx.map)[di.y + 1][di.x] == 'E' || ft_path(mx.map)[di.y + 1][di.x] == 'C'))
-					exit(0);
-				else if ((ft_path(mx.map)[di.y][di.x + 1] == 'E' || ft_path(mx.map)[di.y][di.x + 1] == 'C'))
-					exit(0);
-				else if ((ft_path(mx.map)[di.y - 1][di.x] == 'E' || ft_path(mx.map)[di.y - 1][di.x] == 'C'))
-					exit(0);
-				else if ((ft_path(mx.map)[di.y][di.x - 1] == 'E' || ft_path(mx.map)[di.y][di.x - 1] == 'C'))
-					exit(0);
-			}
-			di.x++;
-		}
-		di.y++;
-	}
-}
-
 /* ############### Count Char ############### */
 void	sc(void)
 {
@@ -93,6 +67,17 @@ void	sc(void)
 		c++;
 }
 
+//void	mo_p(void)
+//{
+//	int	c;
+
+//	if (ft_path(mx.map)[di.y][di.x] == 'P')
+//	{
+//		printf("Number of pawn movements: %d\n", c);
+//		c++;
+//	}
+//}
+
 /* ############### main ############### */
 int	main(int argc, char **argv)
 {
@@ -102,19 +87,16 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	mx.map = ft_rline(argv[1]);
-	check_cpe();
+	count_cpe();
 	ds.w = ft_count(mx.map) * 50;
 	ds.h = f_strlen(mx.map) * 50;
 	mx.mlx = mlx_init();
 	mx.win = mlx_new_window(mx.mlx, ds.w, ds.h, "Game");
-	if (line_up(mx.map) == 1 || \
-	line_down(mx.map) == 1 || center_wall(mx.map) == 1)
-	{
-		ft_putstr("Error Map");
-		return (0);
-	}
-	check_mapi();
+	check_lines();
+	check_c();
+	check_e();
 	sc();
+	//mo_p();
 	mx.map = ft_rline(argv[1]);
 	mlx_key_hook(mx.win, key_hook, move_p);
 	mlx_hook(mx.win, 17, 0, ft_close, move_p);

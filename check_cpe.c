@@ -13,53 +13,14 @@
 #include "so_long.h"
 #include "mlx.h"
 
-/* ############# Count E ###################### */
-int	count_e(char **map)
+/* ############### Key_hook ############### */
+int	ft_close(void)
 {
-	int	c;
-
-	di.y = 0;
-	c = 0;
-	while (map[di.y] != '\0')
-	{
-		di.x = 0;
-		while (map[di.y][di.x] != '\0')
-		{
-			if (map[di.y][di.x] == 'E')
-			{
-				c += 1;
-			}
-			di.x++;
-		}
-		di.y++;
-	}
-	return (c);
+	ft_putstr("You Close with X");
+	exit(0);
 }
 
-/* ############# Count P ###################### */
-int	count_p(char **map)
-{
-	int	c;
-
-	di.y = 0;
-	c = 0;
-	while (map[di.y] != '\0')
-	{
-		di.x = 0;
-		while (map[di.y][di.x] != '\0')
-		{
-			if (map[di.y][di.x] == 'P')
-			{
-				c += 1;
-			}
-			di.x++;
-		}
-		di.y++;
-	}
-	return (c);
-}
-
-/* ########### Check P & E & C Is Valid########### */
+/* ########### Check P & E & C Is Valid ########### */
 int	ft_valid(void)
 {
 	int	y;
@@ -87,8 +48,8 @@ int	ft_valid(void)
 	return (0);
 }
 
-/* ############ Check C & P & E ############ */
-void	check_cpe(void)
+/* ############ Count C & P & E ############ */
+void	count_cpe(void)
 {
 	if (count_p(mx.map) != 1)
 	{
@@ -103,5 +64,59 @@ void	check_cpe(void)
 	{
 		ft_putstr("Error Door");
 		exit(0);
+	}
+}
+
+/* ############# Check C ###################### */
+void	check_c(void)
+{
+	di.y = 0;
+	while (ft_path(mx.map)[di.y])
+	{
+		di.x = 0;
+		while (ft_path(mx.map)[di.y][di.x])
+		{
+			if (ft_path(mx.map)[di.y][di.x] == '0')
+			{
+				if (ft_path(mx.map)[di.y + 1][di.x] == 'C')
+					exit(1);
+				else if (ft_path(mx.map)[di.y][di.x + 1] == 'C')
+					exit(1);
+				else if (ft_path(mx.map)[di.y - 1][di.x] == 'C')
+					exit(1);
+				else if (ft_path(mx.map)[di.y][di.x - 1] == 'C')
+					exit(1);
+			}
+			di.x++;
+		}
+		di.y++;
+	}
+}
+
+/* ############# Check E ###################### */
+void	check_e(void)
+{
+	di.y = 0;
+	while (ft_path(mx.map)[di.y])
+	{
+		di.x = 0;
+		while (ft_path(mx.map)[di.y][di.x])
+		{
+			if (ft_path(mx.map)[di.y][di.x] == 'E')
+			{
+				if (ft_path(mx.map)[di.y + 1][di.x] == 'P')
+					return ;
+				else if (ft_path(mx.map)[di.y - 1][di.x] == 'P')
+					return ;
+				else if (ft_path(mx.map)[di.y][di.x + 1] == 'P')
+					return ;
+				else if (ft_path(mx.map)[di.y][di.x - 1] == 'P')
+					return ;
+				else
+					exit(1);
+			}
+			di.x++;
+		}
+		di.y++;
 	}
 }

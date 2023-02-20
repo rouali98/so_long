@@ -20,7 +20,8 @@ void	var(void *mlx, void *win)
 	img.c = mlx_xpm_file_to_image(mlx, "img/c.xpm", &ds.h, &ds.w);
 	img.ec = mlx_xpm_file_to_image(mlx, "img/E_close.xpm", &ds.h, &ds.w);
 	img.eo = mlx_xpm_file_to_image(mlx, "img/E_open.xpm", &ds.h, &ds.w);
-	img.p = mlx_xpm_file_to_image(mlx, "img/p.xpm", &ds.h, &ds.w);
+	img.pl = mlx_xpm_file_to_image(mlx, "img/p>.xpm", &ds.h, &ds.w);
+	img.pr = mlx_xpm_file_to_image(mlx, "img/p<.xpm", &ds.h, &ds.w);
 }
 
 /* ############# Put Images ###################### */

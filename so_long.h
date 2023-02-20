@@ -55,7 +55,8 @@ struct s_image
 	void	*c;
 	void	*ec;
 	void	*eo;
-	void	*p;
+	void	*pr;
+	void	*pl;
 
 } img;
 
@@ -72,16 +73,17 @@ int		count_c(char **map);
 int		ft_valid(void);
 int		count_e(char **map);
 int		count_p(char **map);
-void	check_cpe(void);
+void	count_cpe(void);
 int		ft_count(char **str);
-void	check_mapi(void);
+void	check_c(void);
+void	check_e(void);
+char	**ft_path(char **map);
+void	check_lines(void);
 void	move_p(void);
 void	ft_putstr(char *str);
 int		ft_close(void);
 void	ft_exitud(void);
 void	ft_exitlr(void);
-//void	valid_checkdoor(void);
-//char	**ft_checkdoor(char **map);
 
 /* image */
 

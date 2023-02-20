@@ -13,13 +13,6 @@
 #include "so_long.h"
 #include "mlx.h"
 
-/* ############### Key_hook ############### */
-int	ft_close(void)
-{
-	ft_putstr("You Close with X");
-	exit(0);
-}
-
 /* ############### Count Char ############### */
 int	ft_count(char **str)
 {
@@ -54,6 +47,77 @@ int	count_c(char **map)
 			x++;
 		}
 		y++;
+	}
+	return (c);
+}
+
+/* ############# Count Line in file ###################### */
+int	count_line(char *argv)
+{
+	char	*map;
+	int		fd;
+	int		y;
+
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr("Error");
+		return (0);
+	}
+	y = 0;
+	while (1)
+	{
+		map = get_next_line(fd);
+		if (map == NULL)
+			break ;
+		y++;
+	}
+	close(fd);
+	return (y);
+}
+
+/* ############# Count E ###################### */
+int	count_e(char **map)
+{
+	int	c;
+
+	di.y = 0;
+	c = 0;
+	while (map[di.y] != '\0')
+	{
+		di.x = 0;
+		while (map[di.y][di.x] != '\0')
+		{
+			if (map[di.y][di.x] == 'E')
+			{
+				c += 1;
+			}
+			di.x++;
+		}
+		di.y++;
+	}
+	return (c);
+}
+
+/* ############# Count P ###################### */
+int	count_p(char **map)
+{
+	int	c;
+
+	di.y = 0;
+	c = 0;
+	while (map[di.y] != '\0')
+	{
+		di.x = 0;
+		while (map[di.y][di.x] != '\0')
+		{
+			if (map[di.y][di.x] == 'P')
+			{
+				c += 1;
+			}
+			di.x++;
+		}
+		di.y++;
 	}
 	return (c);
 }

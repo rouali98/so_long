@@ -41,31 +41,6 @@ int	center_wall(char **map)
 	return (0);
 }
 
-/* ############# Count Line in file ###################### */
-int	count_line(char *argv)
-{
-	char	*map;
-	int		fd;
-	int		y;
-
-	fd = open(argv, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putstr("Error");
-		return (0);
-	}
-	y = 0;
-	while (1)
-	{
-		map = get_next_line(fd);
-		if (map == NULL)
-			break ;
-		y++;
-	}
-	close(fd);
-	return (y);
-}
-
 /* ############# Return Line ###################### */
 char	**ft_rline(char *argv)
 {
@@ -93,6 +68,16 @@ char	**ft_rline(char *argv)
 	m[y] = 0;
 	close(fd);
 	return (m);
+}
+
+void	check_lines(void)
+{
+	if (line_up(mx.map) == 1 || \
+	line_down(mx.map) == 1 || center_wall(mx.map) == 1)
+	{
+		ft_putstr("Error Map");
+		exit(1);
+	}
 }
 
 /* ############# Check Line Up ###################### */
