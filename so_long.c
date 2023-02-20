@@ -57,20 +57,6 @@ char	**ft_path(char **map)
 	return (map);
 }
 
-int	ft_testksh(int i, int b, char **s)
-{
-	if (s[i][b] == 'E' || s[i][b] == 'C')
-	{
-		if (ft_path(mx.map)[i + 1][b] == 'P' || \
-		ft_path(mx.map)[i - 1][b] == 'P' || ft_path(mx.map)[i][b + 1] \
-		== 'P' || ft_path(mx.map)[i][b - 1] == 'P')
-		{
-			return (0);
-		}
-	}
-	return (1);
-}
-
 /* ############# Check map error ###################### */
 void	check_mapi(void)
 {
@@ -80,16 +66,15 @@ void	check_mapi(void)
 		di.x = 0;
 		while (ft_path(mx.map)[di.y][di.x])
 		{
-
 			if (ft_path(mx.map)[di.y][di.x] == '0')
 			{
-				if ((ft_path(mx.map)[di.y + 1][di.x] == 'E' || ft_path(mx.map)[di.y + 1][di.x] == 'C') && ft_testksh(di.y + 1, di.x, ft_path(mx.map)))
+				if ((ft_path(mx.map)[di.y + 1][di.x] == 'E' || ft_path(mx.map)[di.y + 1][di.x] == 'C'))
 					exit(0);
-				else if ((ft_path(mx.map)[di.y][di.x + 1] == 'E' || ft_path(mx.map)[di.y][di.x + 1] == 'C') && ft_testksh(di.y, di.x + 1, ft_path(mx.map)))
+				else if ((ft_path(mx.map)[di.y][di.x + 1] == 'E' || ft_path(mx.map)[di.y][di.x + 1] == 'C'))
 					exit(0);
-				else if ((ft_path(mx.map)[di.y - 1][di.x] == 'E' || ft_path(mx.map)[di.y - 1][di.x] == 'C') &&  ft_testksh(di.y - 1, di.x, ft_path(mx.map)))
+				else if ((ft_path(mx.map)[di.y - 1][di.x] == 'E' || ft_path(mx.map)[di.y - 1][di.x] == 'C'))
 					exit(0);
-				else if ((ft_path(mx.map)[di.y][di.x - 1] == 'E' || ft_path(mx.map)[di.y][di.x - 1] == 'C') && ft_testksh(di.y, di.x - 1, ft_path(mx.map)))
+				else if ((ft_path(mx.map)[di.y][di.x - 1] == 'E' || ft_path(mx.map)[di.y][di.x - 1] == 'C'))
 					exit(0);
 			}
 			di.x++;

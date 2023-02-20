@@ -13,8 +13,8 @@
 #include "so_long.h"
 #include "mlx.h"
 
-/* ############# Check E ###################### */
-int	check_e(char **map)
+/* ############# Count E ###################### */
+int	count_e(char **map)
 {
 	int	c;
 
@@ -36,8 +36,8 @@ int	check_e(char **map)
 	return (c);
 }
 
-/* ############# Check P ###################### */
-int	check_p(char **map)
+/* ############# Count P ###################### */
+int	count_p(char **map)
 {
 	int	c;
 
@@ -90,7 +90,7 @@ int	ft_valid(void)
 /* ############ Check C & P & E ############ */
 void	check_cpe(void)
 {
-	if (check_p(mx.map) != 1)
+	if (count_p(mx.map) != 1)
 	{
 		ft_putstr("Error Player");
 		exit(0);
@@ -99,7 +99,7 @@ void	check_cpe(void)
 	{
 		exit(0);
 	}
-	if (check_e(mx.map) != 1)
+	if (count_e(mx.map) != 1)
 	{
 		ft_putstr("Error Door");
 		exit(0);
