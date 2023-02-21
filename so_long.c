@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:15 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 20:47:19 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/21 16:07:08 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,38 +66,6 @@ void	sc(void)
 		c++;
 }
 
-//void	mo_p(void)
-//{
-//	int	c;
-
-//	if (ft_path(mx.map)[di.y][di.x] == 'P')
-//	{
-//		printf("Number of pawn movements: %d\n", c);
-//		c++;
-//	}
-//}
-
-//int	ft_arg(char *argv)
-//{
-//	char *ber = ".ber";
-//	char *s;
-//	int i;
-//	i = 0;
-//	while(argv != '\0')
-//	{
-//		if (argv[i] == ".")
-//		{
-//			s = argv[i];
-//			i++;
-//		}
-//		i++;
-//	}
-//	if(ber == s)
-//		return (1);
-//	else
-//		return (0);
-//}
-
 /* ############### main ############### */
 int	main(int argc, char **argv)
 {
@@ -106,8 +74,6 @@ int	main(int argc, char **argv)
 		ft_putstr("Error");
 		return (0);
 	}
-	//if (ft_arg(argv[1]) == 1)
-	//	exit(1);
 	mx.map = ft_rline(argv[1]);
 	count_cpe();
 	ds.w = ft_count(mx.map) * 50;
@@ -118,11 +84,6 @@ int	main(int argc, char **argv)
 	check_c();
 	check_e();
 	sc();
-	if (ft_arg(argv[1]) == 1)
-	{
-		exit(1);
-	}
-
 	mx.map = ft_rline(argv[1]);
 	mlx_key_hook(mx.win, key_hook, move_p);
 	mlx_hook(mx.win, 17, 0, ft_close, move_p);

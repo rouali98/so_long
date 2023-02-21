@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:25 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 19:40:15 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/21 15:49:30 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ struct s_direction
 {
 	int	x;
 	int	y;
-	int c;
+	int	c;
+	int	i;
 
 } di;
 
@@ -94,10 +95,10 @@ void	ft_exitud(void);
 void	ft_exitlr(void);
 
 /* move.c */
-void	m_right(void);
-void	m_left(void);
-void	m_up(void);
-void	m_down(void);
+void	m_right(char **map, int y, int x);
+void	m_left(char **map, int y, int x);
+void	m_up(char **map, int y, int x);
+void	m_down(char **map, int y, int x);
 void	move_p(void);
 
 /* put_img.c */
@@ -107,6 +108,7 @@ void	put_img(char **map, void *mlx, void *win);
 /* so_long_utils.c */
 int		f_strlen(char **str);
 void	ft_putstr(char *str);
+void	count_moves(char **map, int y, int x);
 
 /* so_long.c */
 char	**ft_path(char **map);

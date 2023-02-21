@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:51:26 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 16:19:53 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/21 15:55:57 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,30 @@ void	ft_putstr(char *str)
 	{
 		write(1, &str[i], 1);
 		i++;
+	}
+}
+
+/* ############### Count Move ############### */
+void	count_moves(char **map, int y, int x)
+{
+	if (map[y][x + 1] == 'C' || map[y][x + 1] == '0')
+	{
+		printf("Move -> %d\n", di.i++);
+		return ;
+	}
+	if (map[y][x - 1] == 'C' || map[y][x - 1] == '0')
+	{
+		printf("Move -> %d\n", di.i++);
+		return ;
+	}
+	if (map[y - 1][x] == 'C' || map[y - 1][x] == '0')
+	{
+		printf("Move -> %d\n", di.i++);
+		return ;
+	}
+	if (map[y + 1][x] == 'C' || map[y + 1][x] == '0')
+	{
+		printf("Move -> %d\n", di.i++);
+		return ;
 	}
 }
