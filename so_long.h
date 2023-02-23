@@ -6,12 +6,14 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:25 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/21 15:49:30 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/23 17:41:36 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define MAX_LINES 100
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -106,11 +108,15 @@ void	var(void *mlx);
 void	put_img(char **map, void *mlx, void *win);
 
 /* so_long_utils.c */
-int		f_strlen(char **str);
-void	ft_putstr(char *str);
+int		ft_putstr(char *str);
+int		ft_putchar(char c);
+int		ft_putnbr(int n);
+void	print_move(void);
 void	count_moves(char **map, int y, int x);
 
 /* so_long.c */
+int		f_strlen(char **map);
 char	**ft_path(char **map);
+void	freed(char **map);
 
 #endif

@@ -6,11 +6,24 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:59:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 16:19:44 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/23 17:49:48 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* ############### Free ############### */
+void	freed(char **map)
+{
+	int	c;
+
+	c = 0;
+	while (ft_path(map)[c])
+	{
+		free(map[c]);
+		c++;
+	}
+}
 
 /* ########### Exit Up && Down ############# */
 void	ft_exitud(void)

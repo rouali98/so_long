@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 09:54:05 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 17:37:52 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/23 17:44:44 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	ft_count(char **str)
 
 	x = 0;
 	while (str[0][x] != '\0')
-	{
 		x++;
-	}
 	return (x);
 }
 
@@ -34,10 +32,7 @@ int	count_line(char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr("Error");
-		return (0);
-	}
+		exit (1);
 	y = 0;
 	while (1)
 	{
@@ -45,6 +40,7 @@ int	count_line(char *argv)
 		if (map == NULL)
 			break ;
 		y++;
+		free(map);
 	}
 	close(fd);
 	return (y);

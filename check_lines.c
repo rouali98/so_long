@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:55:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 17:37:45 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/23 17:39:44 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ char	**ft_rline(char *argv)
 	int		y;
 
 	m = malloc(sizeof(char *) * (count_line(argv) + 1));
+	if (!m)
+		exit (1);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr("Error");
-		return (0);
-	}
+		exit(1);
 	y = 0;
 	while (1)
 	{

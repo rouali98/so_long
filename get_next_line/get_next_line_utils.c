@@ -6,9 +6,10 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:37:20 by rouali            #+#    #+#             */
-/*   Updated: 2022/11/08 13:37:44 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/23 15:42:59 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_strlen(char *str)

@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:55:32 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/20 20:12:52 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/22 10:33:33 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	var(void *mlx)
 	img.eo = mlx_xpm_file_to_image(mlx, "img/E_open.xpm", &ds.h, &ds.w);
 	img.pl = mlx_xpm_file_to_image(mlx, "img/p>.xpm", &ds.h, &ds.w);
 	img.pr = mlx_xpm_file_to_image(mlx, "img/p<.xpm", &ds.h, &ds.w);
+	if (img.i1 == NULL || img.i0 == NULL || img.c == NULL || \
+	img.ec == NULL || img.eo == NULL || img.pl == NULL || img.pr == NULL)
+		exit(1);
 }
 
 /* ############# Put Images ###################### */
