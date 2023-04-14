@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:55:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/23 17:39:44 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/25 10:10:15 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	check_lines(void)
 	if (line_up(mx.map) == 1 || \
 	line_down(mx.map) == 1 || center_wall(mx.map) == 1)
 	{
-		ft_putstr("Error Map");
+		ft_putstr("Error\nWall");
 		exit(1);
 	}
 }

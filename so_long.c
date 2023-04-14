@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:15 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/23 19:27:59 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/27 11:46:55 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	key_hook(int keycode)
 	if (mx.key == 53)
 	{
 		ft_putstr("You Close with ESC");
-		exit(0);
+		exit(1);
 	}
 	move_p();
 	put_img(mx.map, mx.mlx, mx.win);
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_putstr("Error!");
+		ft_putstr("Error\narg");
 		return (0);
 	}
 	mx.map = ft_rline(argv[1]);

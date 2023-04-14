@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 09:36:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/23 17:20:20 by rouali           ###   ########.fr       */
+/*   Updated: 2023/02/24 17:23:48 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	ft_close(void)
 {
 	ft_putstr("You Close with X");
-	exit(0);
+	exit(1);
 }
 
 /* ########### Check P & E & C Is Valid ########### */
@@ -52,17 +52,17 @@ void	count_cpe(void)
 {
 	if (count_p(mx.map) != 1)
 	{
-		ft_putstr("Error Player");
-		exit(0);
+		ft_putstr("Error\nPlayer");
+		exit(1);
 	}
 	if (ft_valid() == 1)
 	{
-		exit(0);
+		exit(1);
 	}
 	if (count_e(mx.map) != 1)
 	{
-		ft_putstr("Error Door");
-		exit(0);
+		ft_putstr("Error\nDoor");
+		exit(1);
 	}
 }
 
