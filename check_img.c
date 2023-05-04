@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:00 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/18 17:56:15 by rouali           ###   ########.fr       */
+/*   Updated: 2023/04/30 18:10:31 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /* ############# Put Images E & 0 ###################### */
-void	puteo(char **map, void *mlx, void *win)
+void	puteco(char **map, void *mlx, void *win)
 {
 	if (count_c(map))
 	{

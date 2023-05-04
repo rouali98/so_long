@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:59:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/24 17:21:51 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/01 15:50:40 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_print_error(void)
+{
+	ft_putstr("Error\n");
+	exit(1);
+}
 
 /* ############### Free ############### */
 void	freed(char **map)
@@ -18,11 +24,12 @@ void	freed(char **map)
 	int	c;
 
 	c = 0;
-	while (ft_path(map)[c])
+	while (map[c])
 	{
 		free(map[c]);
 		c++;
 	}
+	free(map);
 }
 
 /* ########### Exit Up && Down ############# */

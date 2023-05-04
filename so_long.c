@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:15 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/27 11:46:55 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/03 14:57:44 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ int	f_strlen(char **map)
 	int	y;
 
 	y = 0;
-	while (map[y] != '\0')
-	{
+	while (map[y])
 		y++;
-	}
 	return (y);
 }
 
@@ -69,20 +67,21 @@ char	**ft_path(char **map)
 	return (map);
 }
 
-/* ############### Count Char ############### */
-int	sc(char **argv)
+/* ############### check if .ber ############### */
+int	check_ber(char *argv)
 {
 	int	c;
 
 	c = 0;
-	while (ft_path(mx.map)[c])
+	while (argv[c])
 		c++;
-	if (argv[1][ft_strlen(argv[1]) - 1] != 'r' && \
-	argv[1][ft_strlen(argv[1]) - 2] != 'e' && \
-	argv[1][ft_strlen(argv[1]) - 3] != 'b' && \
-	argv[1][ft_strlen(argv[1]) - 4] != '.')
+	if (argv[c - 1] != 'r' \
+	&& argv[c - 2] != 'e' \
+	&& argv[c - 3] != 'b' \
+	&& argv[c - 4] != '.')
 		return (1);
-	return (0);
+	else
+		return (0);
 }
 
 /* ############### main ############### */
@@ -95,17 +94,19 @@ int	main(int argc, char **argv)
 	}
 	mx.map = ft_rline(argv[1]);
 	check_lines();
-	count_cpe();
+	print_error();
 	check_c();
 	check_e();
-	sc(argv);
+	if (check_ber(argv[1]) == 1)
+		ft_print_error();
 	freed(mx.map);
-	free(mx.map);
 	mx.map = ft_rline(argv[1]);
 	ds.w = ft_count(mx.map) * 50;
 	ds.h = f_strlen(mx.map) * 50;
 	mx.mlx = mlx_init();
-	mx.win = mlx_new_window(mx.mlx, ds.w, ds.h, "Game");
+	if (ds.w > 2550 || ds.h > 1400)
+		exit(1);
+	mx.win = mlx_new_window(mx.mlx, ds.w, ds.h, "Game of LEET");
 	mlx_key_hook(mx.win, key_hook, move_p);
 	mlx_hook(mx.win, 17, 0, ft_close, move_p);
 	put_img(mx.map, mx.mlx, mx.win);

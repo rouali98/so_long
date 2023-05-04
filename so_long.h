@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:25 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/23 17:41:36 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:16:13 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define MAX_LINES 100
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
 # include "./get_next_line/get_next_line.h"
 # include "mlx.h"
 
@@ -46,9 +39,7 @@ struct s_direction
 {
 	int	x;
 	int	y;
-	int	c;
 	int	i;
-
 } di;
 
 /* ############### image ############### */
@@ -66,20 +57,18 @@ struct s_image
 
 /* check_cpe.c */
 int		ft_close(void);
-int		ft_valid(void);
-void	count_cpe(void);
+void	print_error(void);
 void	check_c(void);
 void	check_e(void);
 
 /* check_img.c */
-void	puteo(char **map, void *mlx, void *win);
+void	puteco(char **map, void *mlx, void *win);
 void	put_c(void *mlx, void *win);
 void	put_p(void *mlx, void *win);
 void	put_1(void *mlx, void *win);
 void	put_0(void *mlx, void *win);
 
 /* check_lines.c */
-int		center_wall(char **str);
 char	**ft_rline(char *argv);
 void	check_lines(void);
 int		line_up(char **str);
@@ -93,25 +82,19 @@ int		count_e(char **map);
 int		count_p(char **map);
 
 /* exit.c */
+void	ft_print_error(void);
 void	ft_exitud(void);
 void	ft_exitlr(void);
 
 /* move.c */
-void	m_right(char **map, int y, int x);
-void	m_left(char **map, int y, int x);
-void	m_up(char **map, int y, int x);
-void	m_down(char **map, int y, int x);
 void	move_p(void);
 
 /* put_img.c */
-void	var(void *mlx);
+// void	var(void *mlx);
 void	put_img(char **map, void *mlx, void *win);
 
 /* so_long_utils.c */
 int		ft_putstr(char *str);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-void	print_move(void);
 void	count_moves(char **map, int y, int x);
 
 /* so_long.c */

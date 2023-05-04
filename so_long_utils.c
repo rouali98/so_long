@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:51:26 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/22 12:49:45 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/01 16:11:36 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_putnbr(int n)
 void	print_move(void)
 {
 	ft_putstr("Move -> ");
-	ft_putnbr(di.i++);
+	ft_putnbr(++di.i);
 	ft_putstr("\n");
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 09:54:05 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/23 17:44:44 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/01 15:39:46 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	count_line(char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		exit (1);
+		ft_print_error();
 	y = 0;
 	while (1)
 	{
@@ -61,9 +61,7 @@ int	count_c(char **map)
 		while (map[y][x] != '\0')
 		{
 			if (map[y][x] == 'C')
-			{
 				c += 1;
-			}
 			x++;
 		}
 		y++;
@@ -74,45 +72,41 @@ int	count_c(char **map)
 /* ############# Count E ###################### */
 int	count_e(char **map)
 {
-	int	c;
+	int	e;
 
 	di.y = 0;
-	c = 0;
+	e = 0;
 	while (map[di.y] != '\0')
 	{
 		di.x = 0;
 		while (map[di.y][di.x] != '\0')
 		{
 			if (map[di.y][di.x] == 'E')
-			{
-				c += 1;
-			}
+				e += 1;
 			di.x++;
 		}
 		di.y++;
 	}
-	return (c);
+	return (e);
 }
 
 /* ############# Count P ###################### */
 int	count_p(char **map)
 {
-	int	c;
+	int	p;
 
 	di.y = 0;
-	c = 0;
+	p = 0;
 	while (map[di.y] != '\0')
 	{
 		di.x = 0;
 		while (map[di.y][di.x] != '\0')
 		{
 			if (map[di.y][di.x] == 'P')
-			{
-				c += 1;
-			}
+				p += 1;
 			di.x++;
 		}
 		di.y++;
 	}
-	return (c);
+	return (p);
 }

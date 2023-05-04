@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_cpe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 09:36:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/24 17:23:48 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/03 15:36:41 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* ############### Key_hook ############### */
 int	ft_close(void)
 {
-	ft_putstr("You Close with X");
+	ft_putstr("You Close with X\n");
 	exit(1);
 }
 
@@ -36,9 +35,7 @@ int	ft_valid(void)
 			{
 				if ((mx.map[y][x + 1] == '1' && mx.map[y][x - 1] == '1') \
 				&& (mx.map[y + 1][x] == '1' && mx.map[y - 1][x] == '1'))
-				{
 					return (1);
-				}
 			}
 			x++;
 		}
@@ -47,23 +44,17 @@ int	ft_valid(void)
 	return (0);
 }
 
-/* ############ Count C & P & E ############ */
-void	count_cpe(void)
+/* ############ print_error ############ */
+void	print_error(void)
 {
 	if (count_p(mx.map) != 1)
-	{
-		ft_putstr("Error\nPlayer");
-		exit(1);
-	}
+		ft_print_error();
 	if (ft_valid() == 1)
-	{
-		exit(1);
-	}
+		ft_print_error();
 	if (count_e(mx.map) != 1)
-	{
-		ft_putstr("Error\nDoor");
+		ft_print_error();
+	if (count_c(mx.map) < 1)
 		exit(1);
-	}
 }
 
 /* ############# Check C ###################### */
@@ -75,16 +66,19 @@ void	check_c(void)
 		di.x = 0;
 		while (ft_path(mx.map)[di.y][di.x])
 		{
-			if (ft_path(mx.map)[di.y][di.x] == '0')
+			if (ft_path(mx.map)[di.y][di.x] == '0' \
+			|| ft_path(mx.map)[di.y][di.x] == 'C')
 			{
 				if (ft_path(mx.map)[di.y + 1][di.x] == 'C')
-					exit(1);
+					ft_print_error();
 				else if (ft_path(mx.map)[di.y][di.x + 1] == 'C')
-					exit(1);
+					ft_print_error();
 				else if (ft_path(mx.map)[di.y - 1][di.x] == 'C')
-					exit(1);
+					ft_print_error();
 				else if (ft_path(mx.map)[di.y][di.x - 1] == 'C')
-					exit(1);
+					ft_print_error();
+				else if (ft_path(mx.map)[di.y][di.x] == 'C')
+					ft_print_error();
 			}
 			di.x++;
 		}
@@ -101,7 +95,8 @@ void	check_e(void)
 		di.x = 0;
 		while (ft_path(mx.map)[di.y][di.x])
 		{
-			if (ft_path(mx.map)[di.y][di.x] == 'E')
+			if (ft_path(mx.map)[di.y][di.x] == 'E' \
+			|| ft_path(mx.map)[di.y][di.x] == 'C')
 			{
 				if (ft_path(mx.map)[di.y + 1][di.x] == 'P')
 					return ;
@@ -112,7 +107,7 @@ void	check_e(void)
 				else if (ft_path(mx.map)[di.y][di.x - 1] == 'P')
 					return ;
 				else
-					exit(1);
+					ft_print_error();
 			}
 			di.x++;
 		}

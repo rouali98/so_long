@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_img.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:55:32 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/27 17:56:41 by rouali           ###   ########.fr       */
+/*   Updated: 2023/04/30 19:23:45 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	var(void *mlx)
 	img.pr = mlx_xpm_file_to_image(mlx, "img/p<.xpm", &ds.h, &ds.w);
 	if (img.i1 == NULL || img.i0 == NULL || img.c == NULL || \
 	img.ec == NULL || img.eo == NULL || img.pl == NULL || img.pr == NULL)
-		exit(1);
+		ft_print_error();
 }
 
 /* ############# Put Images ###################### */
@@ -40,7 +40,7 @@ void	put_img(char **map, void *mlx, void *win)
 			if (map[di.y][di.x] != '1' && map[di.y][di.x] != '0' && \
 			map[di.y][di.x] != 'C' && map[di.y][di.x] != 'P' \
 			&& map[di.y][di.x] != 'E')
-				exit (1);
+				ft_print_error();
 			if (map[di.y][di.x] == '1')
 				put_1(mlx, win);
 			if (map[di.y][di.x] == 'P')
@@ -50,7 +50,7 @@ void	put_img(char **map, void *mlx, void *win)
 			if (map[di.y][di.x] == 'C')
 				put_c(mlx, win);
 			if (map[di.y][di.x] == 'E')
-				puteo(map, mlx, win);
+				puteco(map, mlx, win);
 			di.x++;
 		}
 		di.y++;

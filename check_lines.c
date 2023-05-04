@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:55:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/25 10:10:15 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/01 15:33:48 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**ft_rline(char *argv)
 		exit (1);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		exit(1);
+		ft_print_error();
 	y = 0;
 	while (1)
 	{
@@ -74,10 +74,7 @@ void	check_lines(void)
 {
 	if (line_up(mx.map) == 1 || \
 	line_down(mx.map) == 1 || center_wall(mx.map) == 1)
-	{
-		ft_putstr("Error\nWall");
-		exit(1);
-	}
+		ft_print_error();
 }
 
 /* ############# Check Line Up ###################### */
@@ -95,9 +92,7 @@ int	line_up(char **map)
 			while (map[y][x] != '\0')
 			{
 				if (map[y][x] != '1')
-				{
 					return (1);
-				}
 				x++;
 			}
 		}
@@ -121,9 +116,7 @@ int	line_down(char **map)
 			while (map[y][x] != '\0')
 			{
 				if (map[y][x] != '1')
-				{
 					return (1);
-				}
 				x++;
 			}
 		}

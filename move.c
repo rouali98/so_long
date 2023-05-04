@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 10:14:39 by rouali            #+#    #+#             */
-/*   Updated: 2023/02/23 17:42:14 by rouali           ###   ########.fr       */
+/*   Updated: 2023/05/01 16:10:48 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	m_right(char **map, int y, int x)
 {
 	y = 0;
-	while (map[y] != '\0')
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -27,9 +27,9 @@ void	m_right(char **map, int y, int x)
 				{
 					if (map[y][x + 1] == 'C' || map[y][x + 1] == '0')
 					{
+						count_moves(map, y, x);
 						map[y][x] = '0';
 						map[y][x + 1] = 'P';
-						count_moves(map, y, x);
 						break ;
 					}
 					if (map[y][x + 1] == 'E' && count_c(map) == 0)
@@ -46,7 +46,7 @@ void	m_right(char **map, int y, int x)
 void	m_left(char **map, int y, int x)
 {
 	y = 0;
-	while (map[y] != '\0')
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -57,9 +57,9 @@ void	m_left(char **map, int y, int x)
 				{
 					if (map[y][x - 1] == 'C' || map[y][x - 1] == '0')
 					{
+						count_moves(map, y, x);
 						map[y][x] = '0';
 						map[y][x - 1] = 'P';
-						count_moves(map, y, x);
 						break ;
 					}
 					if (map[y][x - 1] == 'E' && count_c(map) == 0)
@@ -76,7 +76,7 @@ void	m_left(char **map, int y, int x)
 void	m_up(char **map, int y, int x)
 {
 	y = 0;
-	while (map[y] != '\0')
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -87,9 +87,9 @@ void	m_up(char **map, int y, int x)
 				{
 					if (map[y - 1][x] == 'C' || map[y - 1][x] == '0')
 					{
+						count_moves(map, y, x);
 						map[y][x] = '0';
 						map[y - 1][x] = 'P';
-						count_moves(map, y, x);
 						break ;
 					}
 					if (map[y - 1][x] == 'E' && count_c(map) == 0)
@@ -106,7 +106,7 @@ void	m_up(char **map, int y, int x)
 void	m_down(char **map, int y, int x)
 {
 	y = 0;
-	while (map[y] != '\0')
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -117,9 +117,9 @@ void	m_down(char **map, int y, int x)
 				{
 					if (map[y + 1][x] == 'C' || map[y + 1][x] == '0')
 					{
+						count_moves(map, y, x);
 						map[y][x] = '0';
 						map[y + 1][x] = 'P';
-						count_moves(map, y, x);
 						return ;
 					}
 					if (map[y + 1][x] == 'E' && count_c(map) == 0)
@@ -136,7 +136,6 @@ void	m_down(char **map, int y, int x)
 void	move_p(void)
 {
 	di.y = 0;
-	di.x = 0;
 	while (mx.map[di.y] != '\0')
 	{
 		di.x = 0;
