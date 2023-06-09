@@ -6,12 +6,14 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:56:25 by rouali            #+#    #+#             */
-/*   Updated: 2023/05/04 17:16:13 by rouali           ###   ########.fr       */
+/*   Updated: 2023/04/30 18:30:30 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define MAX_LINES 100
 
 # include "./get_next_line/get_next_line.h"
 # include "mlx.h"
